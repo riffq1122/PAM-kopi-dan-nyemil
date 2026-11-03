@@ -67,20 +67,33 @@ fun DetailScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         // 2. Kotak Foto Placeholder
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(220.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .background(Peach),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "Foto ${menu.name}",
-                color = Brown,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium
+        if (menu.imageRes != null) {
+            androidx.compose.foundation.Image(
+                painter = androidx.compose.ui.res.painterResource(id = menu.imageRes),
+                contentDescription = menu.name,
+                contentScale = androidx.compose.ui.layout.ContentScale.Fit,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(220.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(Color.White)
             )
+        } else {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(220.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(Peach),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Foto ${menu.name}",
+                    color = Brown,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(20.dp))

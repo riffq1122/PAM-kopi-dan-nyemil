@@ -5,8 +5,6 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,13 +12,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -30,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import lat.pam.kopidannyemil.ui.theme.Caramel
 import lat.pam.kopidannyemil.ui.theme.DarkBg
 import lat.pam.kopidannyemil.ui.theme.GradientBrown
 import lat.pam.kopidannyemil.ui.theme.KopiDanNyemilTheme
@@ -51,13 +46,15 @@ fun SplashScreen(onStartClick: () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .drawBehind {
-                val period = size.height
-                val shift = progress * period * 2f
+                val periodX = size.width
+                val periodY = size.height
+                val shiftX = progress * periodX * 2f
+                val shiftY = progress * periodY * 2f
                 drawRect(
                     brush = Brush.linearGradient(
                         colors = listOf(DarkBg, GradientBrown),
-                        start = Offset(0f, shift),
-                        end = Offset(0f, shift + period),
+                        start = Offset(shiftX, shiftY),
+                        end = Offset(shiftX + periodX, shiftY + periodY),
                         tileMode = TileMode.Mirror
                     )
                 )
@@ -68,24 +65,20 @@ fun SplashScreen(onStartClick: () -> Unit) {
     ) {
         Spacer(modifier = Modifier.weight(1f))
 
-        Box(
-            modifier = Modifier
-                .size(110.dp)
-                .clip(CircleShape)
-                .background(Caramel),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("Logo", color = Color.White, fontWeight = FontWeight.Bold)
-        }
+        androidx.compose.foundation.Image(
+            painter = androidx.compose.ui.res.painterResource(id = lat.pam.kopidannyemil.R.drawable.logo),
+            contentDescription = "Logo Kopi dan Nyemil",
+            modifier = Modifier.size(110.dp)
+        )
 
         Spacer(modifier = Modifier.height(24.dp))
         Text("Kopi dan Nyemil", color = Color.White, fontSize = 28.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
-        Text("Get a taste of your wish", color = Color.White.copy(alpha = 0.8f))
+        Text("ngopi kok ga nyemil", color = Color.White.copy(alpha = 0.8f))
 
         Spacer(modifier = Modifier.weight(1f))
 
-        PrimaryButton(text = "Start now", onClick = onStartClick)
+        PrimaryButton(text = "mulai sekarang", onClick = onStartClick)
     }
 }
 

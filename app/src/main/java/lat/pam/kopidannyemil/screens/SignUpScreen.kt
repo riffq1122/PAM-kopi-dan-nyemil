@@ -48,7 +48,7 @@ fun SignUpScreen(
         Text("Sign up", color = Ink, fontSize = 28.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            "Join as a member & experience more fun from various meal at mesen_gube marketing app",
+            "Bergabung dengan kami maka anda akan dapat beberapa penawaran menarik.",
             color = Color.Gray
         )
 
@@ -74,8 +74,7 @@ fun SignUpScreen(
     }
 }
 
-@Preview(name = "Light Mode", showBackground = true, showSystemUi = true, device = Devices.PIXEL_7)
-@Preview(name = "Dark Mode", showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES, device = Devices.PIXEL_7)
+@Preview(name = "Light Mode", showBackground = true, showSystemUi = true, device = Devices.PIXEL_7) @Preview(name = "Dark Mode", showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES, device = Devices.PIXEL_7)
 @Composable
 fun SignUpScreenPreview() {
     KopiDanNyemilTheme {

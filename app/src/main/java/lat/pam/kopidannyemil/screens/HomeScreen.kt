@@ -127,14 +127,25 @@ private fun MenuCard(
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box(
-            modifier = Modifier
-                .size(72.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(Peach),
-            contentAlignment = Alignment.Center
-        ) {
-            Text("Foto", color = Brown, fontSize = 12.sp)
+        if (menu.imageRes != null) {
+            androidx.compose.foundation.Image(
+                painter = androidx.compose.ui.res.painterResource(id = menu.imageRes),
+                contentDescription = menu.name,
+                contentScale = androidx.compose.ui.layout.ContentScale.Crop,
+                modifier = Modifier
+                    .size(72.dp)
+                    .clip(RoundedCornerShape(12.dp))
+            )
+        } else {
+            Box(
+                modifier = Modifier
+                    .size(72.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Peach),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Foto", color = Brown, fontSize = 12.sp)
+            }
         }
 
         Spacer(modifier = Modifier.width(12.dp))

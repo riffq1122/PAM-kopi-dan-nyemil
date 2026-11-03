@@ -26,14 +26,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import lat.pam.kopidannyemil.ui.theme.BorderGray
 import lat.pam.kopidannyemil.ui.theme.Caramel
 import lat.pam.kopidannyemil.ui.theme.Ink
@@ -178,5 +183,28 @@ fun Modifier.pressScale(
     return this.graphicsLayer {
         scaleX = scale
         scaleY = scale
+    }
+}
+
+fun Modifier.swipeToSwitchTab(onSwipeLeft: (() -> Unit)?, onSwipeRight: (() -> Unit)?): Modifier = composed {
+    var totalDrag by remember { mutableFloatStateOf(0f) }
+
+    pointerInput(onSwipeLeft, onSwipeRight) {
+        detectHorizontalDragGestures(
+            onDragStart = { totalDrag = 0f },
+            onDragCancel = { totalDrag = 0f },
+            onDragEnd = {
+                val threshold = 80.dp.toPx()
+                if (totalDrag <= -threshold) {
+                    onSwipeLeft?.invoke()
+                } else if (totalDrag >= threshold) {
+                    onSwipeRight?.invoke()
+                }
+                totalDrag = 0f
+            },
+            onHorizontalDrag = { _, dragAmount ->
+                totalDrag += dragAmount
+            }
+        )
     }
 }

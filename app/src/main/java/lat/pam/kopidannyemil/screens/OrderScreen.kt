@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,9 +55,9 @@ fun OrderScreen(
     onHomeClick: () -> Unit,
     onProfileClick: () -> Unit
 ) {
-    var fullName by remember { mutableStateOf(UserSession.name) }
-    var address by remember { mutableStateOf("") }
-    var detail by remember { mutableStateOf("") }
+    var fullName by rememberSaveable { mutableStateOf(UserSession.name) }
+    var address by rememberSaveable { mutableStateOf("") }
+    var detail by rememberSaveable { mutableStateOf("") }
 
     val hasItems = CartState.items.isNotEmpty()
 
@@ -65,6 +66,7 @@ fun OrderScreen(
             .fillMaxSize()
             .background(Cream)
             .statusBarsPadding()
+            .swipeToSwitchTab(onSwipeLeft = onProfileClick, onSwipeRight = onHomeClick)
     ) {
         Column(
             modifier = Modifier

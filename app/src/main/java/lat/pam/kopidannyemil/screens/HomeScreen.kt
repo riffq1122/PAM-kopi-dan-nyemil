@@ -53,6 +53,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Cream)
+            .swipeToSwitchTab(onSwipeLeft = onOrderClick, onSwipeRight = null)
     ) {
         Column(
             modifier = Modifier

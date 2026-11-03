@@ -47,6 +47,7 @@ fun ProfileScreen(
             .fillMaxSize()
             .background(Cream)
             .statusBarsPadding()
+            .swipeToSwitchTab(onSwipeLeft = null, onSwipeRight = onOrderClick)
     ) {
         Column(
             modifier = Modifier

@@ -20,11 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KopiDanNyemilTheme {
-                setContent {
-                    KopiDanNyemilTheme() {
-                        AppNavHost()
-                    }
-                }
+                AppNavHost()
             }
         }
     }

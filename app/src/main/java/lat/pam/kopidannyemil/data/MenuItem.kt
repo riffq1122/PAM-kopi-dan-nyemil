@@ -20,5 +20,5 @@ val dummyMenu = listOf(
     MenuItem("Sourdough Loaf", "Roti fermentasi alami", 35000, hasSize = false, imageRes = R.drawable.sourdough_loaf),
     MenuItem("Cappuccino", "Espresso, foam susu lembut", 25000, imageRes = R.drawable.cappuccino),
     MenuItem("Matcha Latte", "Matcha Jepang, susu segar", 27000, imageRes = R.drawable.matcha_latte),
-    MenuItem(name="roti jala mak limah biadab", description = "makanan khas melayu", price = 15000, hasSize = false, imageRes = R.drawable.roti_jala_mak_limah_biadab)
+    MenuItem(name="Roti Jala", description = "Makanan khas Melayu", price = 15000, hasSize = false, imageRes = R.drawable.roti_jala)
 )
